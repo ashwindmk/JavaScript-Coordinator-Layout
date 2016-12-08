@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Coordinator Layout</title>
+
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+            }
+
+            header {
+                background: #f5b335;
+                height: 60px;
+                position: fixed;
+                top: 0;
+                transition: top 0.2s ease-in-out;
+                width: 100%;
+            }
+
+            .nav-up {
+                top: -60px;
+            }
+
+            main {
+                background:url(
+                data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAPklEQVQYV2O8dOnSfwYg0NPTYwTRuAAj0QqxmYBNM1briFaIzRbi3UiRZ75uNgUHGbfvabgfsHqGaIXYPAMAD8wgC/DOrZ4AAAAASUVORK5CYII=) repeat;
+                height: 2000px;
+            }
+
+            footer {
+                background: #ddd;
+            }
+
+            * {
+                color: transparent;
+            }
+        </style>
+
+        <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+        <script>
+            // Hide Header on on scroll down
+            var didScroll;
+            var lastScrollTop = 0;
+            var delta = 5;
+            var navbarHeight = $('header').outerHeight();
+
+            $(window).scroll(function(event)
+            {
+                didScroll = true;
+            });
+
+            setInterval(function()
+            {
+                if (didScroll)
+                {
+                    hasScrolled();
+                    didScroll = false;
+                }
+            }, 250);
+
+            function hasScrolled()
+            {
+                var st = $(this).scrollTop();
+
+                if (st > lastScrollTop)
+                {
+                    // Scroll Down
+                    $('header').removeClass('nav-down').addClass('nav-up');
+                }
+                else
+                {
+                    // Scroll Up
+                    $('header').removeClass('nav-up').addClass('nav-down');
+                }
+
+                lastScrollTop = st;
+            }
+        </script>
+    </head>
+    <body>
+        <header class="nav-down">
+            This is your menu.
+        </header>
+        <main>
+            This is your body.
+        </main>
+        <footer>
+            This is your footer.
+        </footer>
+    </body>
+</html>
